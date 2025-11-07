@@ -1,0 +1,24 @@
+=== Hyperparameter Tuning Results ===
+
+Search Method: RandomizedSearchCV
+Successful Fits: 20/20
+Failed Fits: 0 (due to memory constraints)
+
+--- Best Parameters ---
+max_depth: 30
+max_features: sqrt
+min_samples_leaf: 4
+min_samples_split: 4
+n_estimators: 137
+
+Best CV Score: 0.957100
+
+--- Test Set Performance (Best Model) ---
+R²: 0.959554
+MAE: 743.619169
+RMSE: 1332.385147
+
+--- Improvement over Default ---
+R² Improvement: -0.94%
+MAE Improvement: -37.29%
+RMSE Improvement: -13.52%

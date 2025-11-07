@@ -1,0 +1,5 @@
+Tree Depth: 51
+Number of Leaves: 20642
+Number of Nodes: 41283
+Number of Features: 36
+Number of Classes: 3

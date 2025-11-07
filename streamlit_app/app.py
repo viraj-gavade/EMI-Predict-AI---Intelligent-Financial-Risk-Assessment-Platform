@@ -20,6 +20,8 @@ from streamlit_app.utils import (
     list_experiments,
     list_runs,
     get_metric_history,
+    list_artifacts,
+    download_artifact,
 )
 
 
@@ -110,6 +112,17 @@ def show_predict():
                 preds = model.predict(inp)
                 st.write("Prediction:")
                 st.write(preds)
+
+                # if model supports probability estimates, show them
+                if hasattr(model, "predict_proba"):
+                    try:
+                        proba = model.predict_proba(inp)
+                        st.write("Prediction probabilities:")
+                        # present as DataFrame for clarity
+                        st.dataframe(pd.DataFrame(proba, columns=[f"class_{i}" for i in range(proba.shape[1])]))
+                    except Exception:
+                        # some pyfunc wrappers don't expose predict_proba; ignore silently
+                        pass
             except Exception as e:
                 st.error(f"Model prediction failed: {e}")
         else:
@@ -136,6 +149,16 @@ def show_predict():
                     buf = io.StringIO()
                     out.to_csv(buf, index=False)
                     st.download_button("Download predictions CSV", buf.getvalue(), file_name="predictions.csv")
+
+                    # show batch probabilities if available
+                    try:
+                        if hasattr(model, "predict_proba"):
+                            proba = model.predict_proba(uploaded_df)
+                            proba_df = pd.DataFrame(proba, columns=[f"class_{i}" for i in range(proba.shape[1])])
+                            st.subheader("Batch prediction probabilities (first 10 rows)")
+                            st.dataframe(proba_df.head(10))
+                    except Exception:
+                        pass
                 except Exception as e:
                     st.error(f"Batch prediction failed: {e}")
 
@@ -222,6 +245,30 @@ def show_monitor():
             if not hist_df.empty:
                 fig = px.line(hist_df, x="timestamp", y="value", title=f"{key} over time")
                 st.plotly_chart(fig, use_container_width=True)
+
+        # list artifacts and allow download
+        st.subheader("Artifacts")
+        artifacts = list_artifacts(chosen["run_id"]) if chosen else []
+        if artifacts:
+            for a in artifacts:
+                path = a["path"]
+                is_dir = a["is_dir"]
+                label = f"{path} {'(dir)' if is_dir else ''}"
+                st.write(label)
+                if not is_dir:
+                    if st.button(f"Download {path}", key=f"dl_{path}"):
+                        local = download_artifact(chosen["run_id"], path)
+                        if local and os.path.exists(local):
+                            try:
+                                with open(local, "rb") as f:
+                                    data = f.read()
+                                st.download_button(f"Save {os.path.basename(path)}", data, file_name=os.path.basename(path))
+                            except Exception as e:
+                                st.error(f"Failed to prepare download: {e}")
+                        else:
+                            st.error("Failed to download artifact")
+        else:
+            st.info("No artifacts found for this run.")
 
         if st.button("Load model from this run (runs:/<id>/model)"):
             run_uri = f"runs:/{chosen['run_id']}/model"
