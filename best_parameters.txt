@@ -1,8 +1,0 @@
-=== Best Hyperparameters ===
-max_depth: 30
-max_features: sqrt
-min_samples_leaf: 4
-min_samples_split: 4
-n_estimators: 137
-
-Best CV Score: 0.957100
