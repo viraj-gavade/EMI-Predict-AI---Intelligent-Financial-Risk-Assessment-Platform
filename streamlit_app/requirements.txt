@@ -1,8 +1,0 @@
-streamlit>=1.25.0
-pandas>=1.4
-numpy
-scikit-learn
-mlflow
-joblib
-plotly
-altair
