@@ -11,7 +11,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Set MLflow tracking URI to local mlruns folder
-MLRUNS_PATH = "file:///D:/Labmentix/EMI Predict AI - Intelligent Financial Risk Assessment Platform/mlruns"
+MLRUNS_PATH = "file:///mnt/B6C43249C4320BDD/Labmentix/EMI Predict AI - Intelligent Financial Risk Assessment Platform/mlruns"
 
 # ==================== HELPER FUNCTIONS ====================
 

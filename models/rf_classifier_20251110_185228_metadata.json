@@ -1,0 +1,8 @@
+{
+  "model": "RandomForestClassifier",
+  "timestamp": "20251110_185228",
+  "accuracy": 0.9569787549407115,
+  "n_estimators": 200,
+  "n_features": 36,
+  "n_classes": 3
+}
