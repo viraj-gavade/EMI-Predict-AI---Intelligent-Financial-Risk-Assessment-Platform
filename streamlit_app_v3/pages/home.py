@@ -106,7 +106,7 @@ def render():
             </div>
         """, unsafe_allow_html=True)
         if st.button("Go to Classification", use_container_width=True, key="nav_class"):
-            st.info("👈 Use the sidebar to navigate to Classification Prediction")
+            st.switch_page("pages/classification_prediction.py")
     
     with col2:
         st.markdown("""
@@ -117,7 +117,7 @@ def render():
             </div>
         """, unsafe_allow_html=True)
         if st.button("Go to Regression", use_container_width=True, key="nav_reg"):
-            st.info("👈 Use the sidebar to navigate to Regression Prediction")
+            st.switch_page("pages/regression_prediction.py")
     
     with col3:
         st.markdown("""
@@ -128,7 +128,7 @@ def render():
             </div>
         """, unsafe_allow_html=True)
         if st.button("Go to Exploration", use_container_width=True, key="nav_explore"):
-            st.info("👈 Use the sidebar to navigate to Data Exploration")
+            st.switch_page("pages/data_exploration.py")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -143,7 +143,7 @@ def render():
             </div>
         """, unsafe_allow_html=True)
         if st.button("Go to Monitoring", use_container_width=True, key="nav_monitor"):
-            st.info("👈 Use the sidebar to navigate to Model Monitoring")
+            st.switch_page("pages/model_monitoring.py")
     
     with col5:
         st.markdown("""
@@ -154,7 +154,7 @@ def render():
             </div>
         """, unsafe_allow_html=True)
         if st.button("Go to Admin", use_container_width=True, key="nav_admin"):
-            st.info("👈 Use the sidebar to navigate to Admin Panel")
+            st.switch_page("pages/admin_panel.py")
     
     with col6:
         st.markdown("""

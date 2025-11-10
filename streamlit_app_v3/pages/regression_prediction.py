@@ -770,3 +770,7 @@ def render():
     
     st.markdown("---")
     st.info("💡 **Tip**: EMI predictions are based on multiple financial factors. Always verify with your financial advisor.")
+
+# Run the page
+if __name__ == "__main__":
+    render()

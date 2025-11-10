@@ -340,3 +340,7 @@ def render():
     
     st.markdown("---")
     st.info("💡 **Tip**: For best results, ensure all input values are accurate and within expected ranges.")
+
+# Run the page
+if __name__ == "__main__":
+    render()

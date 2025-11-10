@@ -1,4 +1,19 @@
-DataSet
+# Keep models for deployment, exclude large datasets
+DataSet/
 docs/
 mlruns/
-models/
+.venv/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+temp_plots/
+
+# Exclude large model files (>100MB) that exceed GitHub limits
+models/random_forest_regressor_final.*
+models/rf_classifier_20251110_185228.*
+models/rf_classifier_latest.joblib
+
+# Include smaller models and metadata
+!models/*.json
+!models/regression_features.json

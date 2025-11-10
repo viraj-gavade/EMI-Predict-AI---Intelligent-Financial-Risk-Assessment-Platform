@@ -119,19 +119,6 @@ st.markdown("""
 st.sidebar.title("💰 EMI Predict AI")
 st.sidebar.markdown("---")
 
-# Navigation menu
-page = st.sidebar.radio(
-    "Navigate to:",
-    ["🏠 Home", 
-     "🔵 Classification Prediction", 
-     "📊 Regression Prediction", 
-     "📈 Data Exploration", 
-     "🔍 Model Monitoring", 
-     "⚙️ Admin Panel"],
-    label_visibility="collapsed"
-)
-
-st.sidebar.markdown("---")
 st.sidebar.markdown("### About")
 st.sidebar.info(
     "EMI Predict AI is an intelligent financial risk assessment platform "
@@ -141,16 +128,5 @@ st.sidebar.info(
 st.sidebar.markdown("---")
 st.sidebar.markdown("© 2025 EMI Predict AI")
 
-# Route to appropriate page
-if "Home" in page:
-    home.render()
-elif "Classification" in page:
-    classification_prediction.render()
-elif "Regression" in page:
-    regression_prediction.render()
-elif "Data Exploration" in page:
-    data_exploration.render()
-elif "Model Monitoring" in page:
-    model_monitoring.render()
-elif "Admin" in page:
-    admin_panel.render()
+# Render the home page content
+home.render()
